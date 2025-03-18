@@ -1,0 +1,31 @@
+<h1>新規投稿</h1>
+
+<% if @post.errors.any? %>
+<div id = "error_explanation">
+    <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+    <ul>
+        <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+<%= form_with model: @post, url: api_v1_posts_path do |form| %>
+<div>
+    <%= form.label :title, 'タイトル' %>
+    <%= form.text_field :title %>
+</div>
+
+<div>
+    <%= form.label :content, '内容'%>
+    <%= form.text_area :content%>
+</div>
+
+<div>
+    <%= form.submit '投稿する' %>
+</div>
+<% end %>
+
+<%= link_to '一覧に戻る', api_v1_posts_path%>

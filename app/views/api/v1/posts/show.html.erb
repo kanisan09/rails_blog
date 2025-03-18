@@ -1,2 +1,6 @@
-<h1>Api::V1::Posts#show</h1>
-<p>Find me in app/views/api/v1/posts/show.html.erb</p>
+<h1><%= @post.title %></h1>
+<p><%= @post.content%></p>
+
+<%= link_to '編集', edit_api_v1_post_path(@post) %>
+<%= link_to '消去', api_v1_post_path(@post), method: :delete, data:{comfirm: '本当に消去しますか？'}%>
+<%= link_to '一覧に戻る', api_v1_posts_path %>
