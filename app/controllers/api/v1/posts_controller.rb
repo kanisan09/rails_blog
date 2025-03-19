@@ -10,6 +10,10 @@ class Api::V1::PostsController < ApplicationController
     render "show"
   end
 
+  def new
+    @post = Post new
+  end
+
   def create
     @post = Post.new(post_params)
 
