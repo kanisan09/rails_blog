@@ -1,2 +1,12 @@
-<h1>Api::V1::Posts#destroy</h1>
-<p>Find me in app/views/api/v1/posts/destroy.html.erb</p>
+<% if notice %>
+<p class="notice"><%= notice %></p>
+<% end %>
+
+<% if alert %>
+<p class="alert"><%= alert%></p>
+<% end %>
+
+<% @posts.each do |post|%>
+<%= post.title %>
+<%= link_to '削除', api_v1_post_path(post), method: :delete, data:{ confirm: '本当に削除しますか？'}%>
+<% end %>

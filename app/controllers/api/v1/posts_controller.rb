@@ -11,14 +11,14 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def new
-    @post = Post new
+    @post = Post.new
   end
 
   def create
     @post = Post.new(post_params)
 
     if @post.save
-      rendirect_to api_v1_post_path(@post), notice: "投稿を作成しました。"
+      redirect_to api_v1_post_path(@post), notice: "投稿を作成しました。"
     else
       render "new"
     end
@@ -27,7 +27,7 @@ class Api::V1::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      render @post.update(post_params)
+      render "show"
       redirect_to api_v1_post_path(@post), notice: "投稿を更新しました。"
     else
       render "edit"
@@ -36,8 +36,11 @@ class Api::V1::PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to api_v1_posts_path, notice: "投稿を削除します"
+    if @post.destroy
+    render "destroy"
+    else
+      redirect_to api_v1_post_path(@post),alert: "投稿削除に失敗しました。"
+    end
   end
 
 private
