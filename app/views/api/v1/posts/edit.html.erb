@@ -1,0 +1,20 @@
+<h1>投稿編集</h1>
+
+<%= form_with(model: @post, url: api_v1_post_path(@post), method: :patch) do |form| %>
+<div>
+    <%= form.label :title, 'タイトル' %>
+    <%= form.text_field :title %>
+</div>
+
+<div>
+    <%= form.label :content, '内容' %>
+    <%= form.text_area :content %>
+</div>
+
+<div>
+    <%= form.submit  '更新' %>
+</div>
+<% end %>
+
+<%= link_to '詳細', api_v1_post_path(@post) %> |
+<%= link_to '一覧', api_v1_posts_path %>

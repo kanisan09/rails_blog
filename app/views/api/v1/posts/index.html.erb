@@ -19,7 +19,7 @@
     <% @posts.each do |post|%>
     <tr>
         <td><%= post.title %></td>
-        <td><%= post.content%></td>
+        <td><%= post.content.truncate(20) %></td>
         <td><%= link_to '詳細', api_v1_post_path(post) %></td>
         <td><%= link_to '編集', edit_api_v1_post_path(post) %></td>
         <td>
