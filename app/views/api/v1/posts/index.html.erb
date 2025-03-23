@@ -22,7 +22,11 @@
         <td><%= post.content%></td>
         <td><%= link_to '詳細', api_v1_post_path(post) %></td>
         <td><%= link_to '編集', edit_api_v1_post_path(post) %></td>
-        <td><%= link_to '削除', api_v1_post_path(post), method: :delete,data:{confirm: '本当に削除しますか？'} %></td>
+        <td>
+            <%= form_with(model: post, url: api_v1_post_path(post), method: :delete) do |form| %>
+            <%= form.submit '削除', data: { confirm: '本当に削除しますか？'} %>
+            <% end %>
+        </td>
     </tr>
     <% end %>
 </table>

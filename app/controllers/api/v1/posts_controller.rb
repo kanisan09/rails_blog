@@ -1,5 +1,4 @@
 class Api::V1::PostsController < ApplicationController
-  protect_from_forgery with: :null_session
   def index
     @posts = Post.all
     render "index"
@@ -37,9 +36,9 @@ class Api::V1::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     if @post.destroy
-    render "destroy"
+    redirect_to api_v1_posts_path, notice: "投稿を削除しました。"
     else
-      redirect_to api_v1_post_path(@post),alert: "投稿削除に失敗しました。"
+      redirect_to api_v1_post_path(@post), alert: "投稿削除に失敗しました。"
     end
   end
 
