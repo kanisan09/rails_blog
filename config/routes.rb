@@ -4,6 +4,8 @@ Rails.application.routes.draw do
       resources :posts, only: [ :index, :show, :create, :update, :destroy, :edit, :new ]
     end
   end
+
+  get "/rails/active_storage/blobs/:signed_id/*filename", to: "active_storage/blobs#show"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

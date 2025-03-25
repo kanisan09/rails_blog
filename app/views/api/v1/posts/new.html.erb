@@ -24,6 +24,11 @@
 </div>
 
 <div>
+    <%= form.label :image, '画像' %>
+    <%= form.file_field :image %>
+</div>
+
+<div>
     <%= form.submit '投稿する' %>
 </div>
 <% end %>
