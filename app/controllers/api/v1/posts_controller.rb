@@ -17,6 +17,9 @@ class Api::V1::PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
+      if params[:post][:image].present?
+        @post.image.attach(params[:post][:image])
+      end
       redirect_to api_v1_post_path(@post), notice: "投稿を作成しました。"
     else
       render "new"
@@ -30,6 +33,9 @@ class Api::V1::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
+      if params[:post][:image].present?
+        @post.image.attach(params[:post][:image])
+      end
       redirect_to api_v1_post_path(@post), notice: "投稿を更新しました。"
     else
       render "edit"
